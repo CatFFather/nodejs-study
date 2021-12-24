@@ -6,6 +6,7 @@ function hello() {
 hello();
 // --> 함수안에서 this를 호출하면 global을 호출하는것과 같다.
 
+// class 에서 this 호출
 class A {
     constructor(num) {
         this.num = num;
