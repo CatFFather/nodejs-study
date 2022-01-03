@@ -31,3 +31,5 @@ fs.promises
   .catch((err) => {
     console.log(err);
   });
+
+// ※ renameSync는 사용하지 않고 callback으로 전달 || promises 형태로 사용하는게 좋다.
