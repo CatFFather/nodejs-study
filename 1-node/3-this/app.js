@@ -8,8 +8,11 @@ hello();
 
 // class 에서 this 호출
 class A {
-    constructor(num) {
+    constructor(num, param) {
         this.num = num;
+        this.count = 5;
+        this.string = 'string';
+        this.param = param;
     }
     memberFunction() {
         console.log('----- class -----');
@@ -18,7 +21,8 @@ class A {
     }
 }
 
-const a = new A(1);
+const a = new A(1, '안녕하세요');
+console.log('a : ', a);
 a.memberFunction();
 // --> class 안에있는 this는 class 자체를 가르키고있고 this는 global이 아니다.
 // 즉 class에서 this란 class 자기 자신을 가르키고 있고 calss 외부에 있는 함수에서 쓰이는 this는 global을 가르키고 있다.
