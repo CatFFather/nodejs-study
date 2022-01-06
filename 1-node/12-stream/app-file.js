@@ -7,9 +7,10 @@ fs.readFile("./file.txt", (_, data) => {
   fs.writeFile("./file2.txt", data, () => {});
   // calculate
   const afterMem = process.memoryUsage().rss; // 파일을 다 읽고 다시 쓰고 난뒤 메모리 상태 저장
+  console.log(afterMem);
   const diff = afterMem - beforeMem;
-  const consumed = diff / 1024 / 1024; // 메모리 사용량 차이 계산
   console.log(diff);
+  const consumed = diff / 1024 / 1024; // 메모리 사용량 차이 계산
   console.log(`Consumed Memory : ${consumed}MB`);
 });
 
