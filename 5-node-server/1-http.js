@@ -22,6 +22,7 @@ const server = http.createServer((req, res) => {
     // 요청에 대한 응답을 해줘야 한다.
     const url = req.url;
     if (url === '/') {
+        // html 문서를 보낼 때 Content-Type 을 text/html 로 지정해줘야 한다.
         res.setHeader('Content-Type', 'text/html');
         res.write('<html>');
         res.write('<head><title>Academy</title></head>');
@@ -40,8 +41,9 @@ const server = http.createServer((req, res) => {
         res.write('<body><h1>Not Found!</h1></body>');
         res.write('</html>');
     }
-    res.end(); // response를 끝내줘야 한다.
+    res.end(); // response를 끝내줘야 한다. (응답 종료)
     // ※ 해당하는 요청에 맞게 해당하는 데이터를 써주고 끝내주면 된다.
+    // end로 끝내주지 않으면 특정한 시간이 지나서 timeout error가 발생 한다.
 });
 
 // 만든 server의 listen을 등록 해줘야 서버가 동작한다. (어떤 port에 들을것인지 작성 서버에도 여러 프로그램 마다 각기 다른 port를 사용)
