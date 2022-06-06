@@ -31,3 +31,15 @@ const server = http
     }
   })
   .listen(8080);
+
+// 사용 방법 참고 https://ejs.co/#install
+//   let template = ejs.compile(str, options);
+//   template(data);
+//   // => Rendered HTML string
+
+//   ejs.render(str, data, options);
+//   // => Rendered HTML string
+
+//   ejs.renderFile(filename, data, options, function(err, str){
+//       // str => Rendered HTML string
+//   });
