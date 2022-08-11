@@ -10,7 +10,13 @@
     
 </body>
 <script>
+    // https://velog.io/@eunjin/JavaScript-fetch-%ED%95%A8%EC%88%98-%EC%93%B0%EB%8A%94-%EB%B2%95-fetch-%ED%95%A8%EC%88%98%EB%A1%9C-HTTP-%EC%9A%94%EC%B2%AD%ED%95%98%EB%8A%94-%EB%B2%95
     fetch('http://localhost:8080',{method:'GET'})
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((e)=>console.error(e))
+
+    fetch('http://localhost:8080/posts',{method:'GET'})
     .then((data)=>{
         console.log(data)
     })
