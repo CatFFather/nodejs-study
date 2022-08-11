@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import postRouter from './router/post.js';
 import userRouter from './router/user.js';
 
@@ -20,6 +21,27 @@ const options = {
 };
 
 app.use(express.static('public', options));
+
+// CORS 문제 해결
+// 이렇게 사용 가능 하지만 번거롭다.
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+//     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, DELETE');
+//     next();
+// });
+// cors 미들웨어 사용하여 설정
+app.use(
+    cors({
+        origin: ['http://127.0.0.1:5500'],
+        optionsSuccessStatus: 200,
+        credentials: true, // Access-Control-Allow-Credentials : true
+    })
+);
+
+app.get('/', (req, res, next) => {
+    res.status(200).json({ message: 'api 호출 성공!!' });
+});
+
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 
