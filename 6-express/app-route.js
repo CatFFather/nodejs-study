@@ -4,10 +4,19 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet'; // 보안 관련 header 설정
 
+// swagger 만들기
+import { swaggerOptions } from './swagger/swagger.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+
 import postRouter from './router/post.js';
 import userRouter from './router/user.js';
 
 const app = express();
+const router = express.Router();
+
+const spece = swaggerJSDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(spece, { explorer: true }));
 
 app.use(cookieParser());
 app.use(morgan('dev'));
