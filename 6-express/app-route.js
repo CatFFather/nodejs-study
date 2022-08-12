@@ -1,9 +1,17 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
+import helmet from 'helmet'; // 보안 관련 header 설정
+
 import postRouter from './router/post.js';
 import userRouter from './router/user.js';
 
 const app = express();
+
+app.use(cookieParser());
+app.use(morgan('dev'));
+app.use(helmet());
 
 app.use(express.json()); // REST API --> Body Parsing
 app.use(express.urlencoded({ extended: false })); // HTML Form --> Body Parsing
@@ -30,15 +38,17 @@ app.use(express.static('public', options));
 //     next();
 // });
 // cors 미들웨어 사용하여 설정
-app.use(
-    cors({
-        origin: ['http://127.0.0.1:5500'],
-        optionsSuccessStatus: 200,
-        credentials: true, // Access-Control-Allow-Credentials : true
-    })
-);
+const corsOption = {
+    origin: ['http://127.0.0.1:5500'],
+    optionsSuccessStatus: 200,
+    credentials: true, // Access-Control-Allow-Credentials : true
+};
+app.use(cors(corsOption));
 
 app.get('/', (req, res, next) => {
+    console.log('cookie ? ', req.cookies);
+    // console.log('device-id ? ', req.cookies['device-id']);
+    // console.log('device-token ? ', req.cookies['device-token']);
     res.status(200).json({ message: 'api 호출 성공!!' });
 });
 
