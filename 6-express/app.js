@@ -2,9 +2,18 @@ import express from 'express'; // 1. express를 가지고 온다.
 const app = express(); // 2. express를 이용하여 app 을 만든다.
 
 // 4. 우리가 원하는 http method, 원하는 경로에 미들웨어를 등록해주면 된다.
-app.get('/', (req, res, next) => {
-    console.log('get');
-    res.send('get / 접속');
+app.get('/sky/:id', (req, res, next) => {
+    // console.log('req.path', req.path);
+    // console.log('req.header', req.headers);
+    console.log('req.params : ', req.params);
+    console.log('req.params.id : ', req.params.id);
+    console.log('req.query : ', req.query);
+    console.log('req.query.keyword : ', req.query.keyword);
+    // res.send('get / 접속'); // send를 이용하여 데이터 전송
+    // res.json({ name: req.params.id }); // JSON을 이용하여 데이터 전송
+    // res.sendStatus(400); // statuscode 보내기
+    res.setHeader('key', 'value'); // header 설정
+    res.status(201).send('created'); // statuscode와 메세지 보내기
 });
 
 app.listen(8080); // 3. 특정한 PORT 에서 들으면 된다.
